@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scaleresult
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scaleresult
+  template:
+    metadata:
+      labels:
+        app: scaleresult
+    spec:
+      containers:
+      - name: scaleresult
+        image: scaleresult:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: HIGH_LOAD_SIM
+          value: "false"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        emptyDir: {}

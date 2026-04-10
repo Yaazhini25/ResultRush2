@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScaleResult - Student Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ScaleResult Portal</h1>
+        <h2>Semester 4 Results - April 2026</h2>
+        
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        
+        <form method="POST" action="/view-result">
+            <input type="text" name="reg_no" placeholder="Register Number (e.g. 20210001)" required>
+            <input type="date" name="dob" required>
+            <button type="submit">View My Result</button>
+        </form>
+        
+        <div class="demo-info">
+            <p><strong>Demo Login:</strong> Reg No: <b>20210001</b> | DOB: <b>2003-05-15</b></p>
+        </div>
+        <p class="note">Built to demonstrate Kubernetes Horizontal Pod Autoscaling</p>
+    </div>
+</body>
+</html>
